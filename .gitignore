@@ -1,0 +1,13 @@
+.env
+/tmp/
+.website.db
+build-errors.log
+
+web/node_modules/
+web/static/css/style.min.css
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db

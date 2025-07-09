@@ -1,0 +1,47 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup asdf
+      uses: asdf-vm/actions/setup@v4
+
+    - name: Add asdf plugins
+      run: |
+        asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+        asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+
+    - name: Install tools
+      uses: asdf-vm/actions/install@v4
+
+    - name: Setup project
+      run: make setup
+
+    - name: Build CSS
+      run: make build-css
+
+    - name: Build Go binary
+      run: make build
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo "StrictHostKeyChecking=no" >> ~/.ssh/config
+
+    - name: Deploy to server
+      run: |
+        ssh deployer@gsvd.dev 'sudo systemctl stop website.service'
+        scp ./tmp/website deployer@gsvd.dev:/home/deployer/website
+        ssh deployer@gsvd.dev 'sudo systemctl start website.service'
