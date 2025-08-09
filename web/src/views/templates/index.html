@@ -1,0 +1,22 @@
+{{define "content"}}
+<div class="flex flex-col gap-y-4">
+    <h2>People-Focused Software Developer - Montréal, QC</h2>
+    <div>
+        Ardent technophile. Ad-Tech enthusiast. More of a back end person. I try to
+        write articles sometimes on my <a href="/blog">blog</a>.
+    </div>
+    <h2>Recent Articles</h2>
+    <ul>
+        {{range .Articles}}
+        <li>{{.FormattedDate}} - <a href="/blog/{{.Slug}}">{{.Title}}</a></li>
+        {{end}}
+    </ul>
+    {{template "links" .}}
+    <h2>Projects</h2>
+    <ul>
+        <li><a href="https://vcs.gsvd.dev/gsvd/website" target="_blank" rel="noopener noreferrer">This website</a></li>
+        <li><a href="https://github.com/gsvd/go-website-skeleton" target="_blank" rel="noopener noreferrer">go-website-skeleton</a></li>
+    </ul>
+    {{template "skills" .}}
+</div>
+{{end}}

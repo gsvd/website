@@ -1,0 +1,47 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: docker
+    container:
+      image: ghcr.io/catthehacker/ubuntu:act-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          echo "$HOME/.local/share/mise/shims" >> "$GITHUB_PATH"
+
+
+      - name: Setup project
+        run: make setup
+
+      - name: Build CSS
+        run: make build-css
+
+      - name: Build Go binary
+        run: make build
+
+      - name: Set up SSH
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOYER_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo -e "Host gsvd.dev\n  StrictHostKeyChecking no\n" >> ~/.ssh/config
+
+      - name: Deploy to server
+        shell: bash
+        run: |
+          ssh deployer@gsvd.dev 'sudo systemctl stop website.service'
+          scp ./tmp/website deployer@gsvd.dev:/home/deployer/website
+          ssh deployer@gsvd.dev 'sudo systemctl start website.service'

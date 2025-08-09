@@ -1,0 +1,22 @@
+{{define "content"}}
+<h1 class="mb-4">Contact</h1>
+<div class="flex flex-row flex-wrap-reverse">
+    <div class="flex flex-col md:basis-1/2 gap-y-2">
+        <div class="flex flex-row gap-x-2 items-center">
+            <h3>Email:</h3>
+            <a href="mailto:me@gsvd.dev">me@gsvd.dev</a>
+        </div>
+        <div class="flex flex-row gap-x-2 items-center">
+            <h3>XMPP:</h3>
+            <a href="xmpp:panbagnat@panbagnat.ca">panbagnat@panbagnat.ca</a>
+            <div>-</div>
+            <a class="text-xs" href="https://panbagnat.ca/" target="_blank">OMEMO</a>
+        </div>
+        {{template "links" .}}
+    </div>
+    <div class="flex flex-col md:basis-1/2 gap-y-4">
+        <p>Feel free to reach out if you have any questions, feedback, or just want to chat!</p>
+        <p>Open to discussions if you think we'd be a good match for a project.</p>
+    </div>
+</div>
+{{end}}
