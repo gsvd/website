@@ -1,9 +1,9 @@
 BINARY_NAME=website
 
-.PHONY: setup setup-ci dev build build-css
+.PHONY: setup setup-ci dev build build-css watch-css
 
 setup:
-	asdf install
+	mise install
 	cd web && npm install
 
 setup-ci:
