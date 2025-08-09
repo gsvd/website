@@ -1,0 +1,21 @@
+{{define "header"}}
+<div
+  class="flex rounded-lg justify-between items-center mb-6 p-3 bg-[#f2e5bc] dark:bg-[#32302f]"
+>
+  <div class="flex flex-row gap-x-1">
+    <img
+      class="w-4 inline m-1"
+      src="/static/images/ca.svg"
+      alt="Canada"
+      title="Canada"
+    />
+    <a href="/"><h2>gsvd.dev</h2></a>
+  </div>
+  <div class="flex flex-row gap-x-4 items-center text-base">
+    <a href="/" {{if eq .CurrentPath "/"}}class="active"{{end}}>home</a>
+    <a href="/blog" {{if hasPrefix .CurrentPath "/blog"}}class="active"{{end}}>blog</a>
+    <a href="/contact" {{if hasPrefix .CurrentPath "/contact"}}class="active"{{end}}>contact</a>
+    <a href="/resume" {{if hasPrefix .CurrentPath "/resume"}}class="active"{{end}}>resume</a>
+  </div>
+</div>
+{{end}}
