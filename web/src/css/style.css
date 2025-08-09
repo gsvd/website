@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Iosevka Aile Iaso";
+    font-weight: 100 900;
+    font-style: normal;
+    src: local("Iosevka Aile Iaso"),
+         url("/static/fonts/iosevka-aile-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka Aile Iaso";
+    font-weight: 100 900;
+    font-style: italic;
+    src: local("Iosevka Aile Iaso"),
+         url("/static/fonts/iosevka-aile-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka Curly Iaso";
+    font-weight: 100 900;
+    src: local("Iosevka Curly Iaso"),
+         url("/static/fonts/iosevka-curly-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka Etoile Iaso";
+    font-weight: 100 900;
+    font-style: normal;
+    src: local("Iosevka Etoile Iaso"),
+         url("/static/fonts/iosevka-etoile-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka Etoile Iaso";
+    font-weight: 100 900;
+    font-style: italic;
+    src: local("Iosevka Etoile Iaso"),
+         url("/static/fonts/iosevka-etoile-italic.woff2") format("woff2");
+}
+
+@config "../../tailwind.config.js";
+
+@layer base {
+    body {
+        @apply container px-4 my-4 max-w-screen-lg bg-[#f9f5d7] text-[#3a3737] dark:bg-[#1d2021] dark:text-[#fbf1c7] text-base;
+    }
+
+    a {
+        @apply text-[#6D214F] hover:text-[#f9f5d7] dark:text-[#cc83e6] dark:hover:text-[#fbf1c7] hover:bg-[#6D214F] underline underline-offset-2;
+    }
+
+    a.active {
+        @apply text-[#f9f5d7] bg-[#6D214F] dark:text-[#fbf1c7] dark:bg-[#6D214F] underline underline-offset-2;
+    }
+
+    h1 {
+        @apply text-2xl;
+    }
+
+    h2 {
+        @apply text-xl;
+    }
+
+    ul {
+        @apply list-disc list-inside;
+    }
+
+    ol {
+        @apply list-decimal list-inside;
+    }
+
+    .skills {
+        @apply flex flex-row flex-wrap gap-4 justify-center text-sm items-center dark:text-[#fbf1c7]/[0.9];
+    }
+
+    .skills span {
+        @apply bg-[#f2e5bc] dark:bg-[#32302f] p-2 rounded-lg;
+    }
+
+    .article h2 {
+        @apply text-2xl my-4;
+    }
+
+    .article p {
+        @apply my-2;
+    }
+
+    .article pre {
+        @apply bg-black text-[#f8f8f2] dark:bg-[#32302f] dark:text-[#fbf1c7] p-4 rounded-lg my-4 overflow-x-auto font-mono text-sm leading-relaxed;
+    }
+
+    .article pre code {
+        @apply whitespace-pre-wrap break-words;
+    }
+
+    blockquote {
+        @apply border-l-4 border-[#3a3737] dark:border-[#fbf1c7] pl-4 my-4 italic;
+    }
+
+    p code,
+    li code,
+    span code,
+    blockquote code {
+        @apply inline font-mono text-sm px-1 py-0.5 rounded bg-[#f2e5bc] text-[#3a3737] dark:bg-[#32302f] dark:text-[#fbf1c7] break-words whitespace-normal align-baseline;
+    }
+}

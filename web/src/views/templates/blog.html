@@ -1,0 +1,16 @@
+{{define "content"}}
+<div class="flex flex-col gap-y-4">
+  <h1>Blog Articles</h1>
+  <p>
+    Please note, the opinions and views expressed here are solely my own and do
+    not reflect the perspectives or positions of any of my current, past, or
+    future employers. I value the freedom of thought and expression, and this
+    space serves as a testament to that.
+  </p>
+  <ul>
+    {{range .Articles}}
+    <li>{{.FormattedDate}} - <a href="/blog/{{.Slug}}">{{.Title}}</a></li>
+    {{end}}
+  </ul>
+</div>
+{{end}}
